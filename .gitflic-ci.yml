@@ -1,0 +1,47 @@
+image: golang:1.22
+
+stages:
+  - check
+  - test
+  - build
+  - smoke
+  - release-check
+
+variables:
+  DOCTORTOOLS_RELEASE_TARGETS: "linux/amd64 windows/amd64"
+
+before_script:
+  - go version
+  - chmod +x scripts/*.sh || true
+
+lint:
+  stage: check
+  script:
+    - make fmt-check
+    - make vet
+
+test:
+  stage: test
+  script:
+    - make test
+
+build:
+  stage: build
+  script:
+    - make build-all
+    - ./bin/doctortools version
+
+smoke:
+  stage: smoke
+  script:
+    - make smoke
+
+release_package_check:
+  stage: release-check
+  script:
+    - make release
+    - make check-release
+  artifacts:
+    paths:
+      - dist/packages/
+    expire_in: 7 days

@@ -1,0 +1,70 @@
+{
+  "version": "1.9.0",
+  "module": "logs",
+  "rules": [
+    {
+      "id": "logs.latest.not_found",
+      "severity": "WARN",
+      "category": "логи",
+      "title": "latest.log не найден",
+      "description": "CraftDoctor не смог прочитать logs/latest.log.",
+      "recommendation": "Если сервер уже запускался, проверить наличие директории logs и права доступа."
+    },
+    {
+      "id": "logs.errors.detected",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "В latest.log найдены ошибки",
+      "description": "В latest.log найдены ERROR, Exception или Caused by.",
+      "recommendation": "Изучить примеры строк, проверить плагины, зависимости, БД и права файлов."
+    },
+    {
+      "id": "logs.long_tick.detected",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Найдены признаки лагов tick loop",
+      "description": "В latest.log найдены строки Can't keep up / server overloaded.",
+      "recommendation": "Проверить view-distance, simulation-distance, плагины, миры, сущности и profiling через spark."
+    },
+    {
+      "id": "logs.warn_spam.detected",
+      "severity": "WARN",
+      "category": "логи",
+      "title": "Много предупреждений в latest.log",
+      "description": "WARN-спам может скрывать реальные ошибки и раздувать логи.",
+      "recommendation": "Убрать повторяющиеся предупреждения."
+    },
+    {
+      "id": "database.connection",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Проблема БД по логам",
+      "description": "В логах найдены признаки ошибки подключения или работы с базой данных.",
+      "recommendation": "Проверить host/port, логин/пароль, права пользователя, доступность БД и пул соединений."
+    },
+    {
+      "id": "logs.stacktrace.fingerprints.detected",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Stack trace сгруппированы по fingerprint",
+      "description": "Log Doctor 2.0 нашёл уникальные группы stack trace и сгруппировал повторы.",
+      "recommendation": "Начать с самой частой группы, проверить component/cause и устранить первопричину."
+    },
+    {
+      "id": "logs.root_cause.primary",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Определена главная причина проблем в логе",
+      "description": "CraftDoctor выбрал наиболее критичную и частую root-cause запись.",
+      "recommendation": "Исправить главную причину до разбора вторичных ошибок."
+    },
+    {
+      "id": "logs.exceptions.detected",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "В latest.log найдены исключения Java",
+      "description": "В логе есть Exception/Caused by/Error строки.",
+      "recommendation": "Использовать stack trace fingerprint и анализ последней сессии запуска."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DoctorTools Products",
+  "description": "Стабильная схема реестра продуктов DoctorTools 3.x.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "alias", "name", "version", "description", "profile", "commands", "status"],
+    "properties": {
+      "id": {"type": "string"},
+      "alias": {"type": "string"},
+      "name": {"type": "string"},
+      "version": {"type": "string"},
+      "description": {"type": "string"},
+      "profile": {"type": "string"},
+      "commands": {"type": "array", "items": {"type": "string"}},
+      "status": {"type": "string", "enum": ["stable", "product", "product-preview", "experimental"]}
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,26 @@
+# Пример .craftdoctorignore для CraftDoctor.
+# Файл кладётся в корень Minecraft-сервера или передаётся через --ignore-file.
+# Поддерживаются точные ID, wildcard с *, category:<категория> и severity:<уровень>.
+
+# Подавить конкретную проверку:
+# security.spawn_protection.disabled
+
+# Подавить все информационные находки:
+# severity:INFO
+
+# Подавить все проверки категории логов:
+# category:логи
+
+# Подавить динамические проверки дублей плагинов:
+# plugins.duplicate.*
+
+# Подавить ожидаемую ошибку БД в тестовом окружении:
+# database.connection
+
+# Подавить все root-cause находки Log Doctor по плагинам:
+# plugins.load_failed
+# plugins.enable_failed
+
+# Подавить конкретную проверку Security Doctor:
+# security.secrets.discord_webhook
+# security.proxy.backend_public_bind

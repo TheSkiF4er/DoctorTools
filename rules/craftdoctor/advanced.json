@@ -1,0 +1,31 @@
+{
+  "name": "CraftDoctor Advanced Rules",
+  "version": "3.0.1",
+  "description": "Правила расширенного Minecraft/server-аудита CraftDoctor 3.0.1.",
+  "rules": [
+    {
+      "id": "craft.java.flags.not_found",
+      "severity": "WARN",
+      "category": "java",
+      "title": "JVM-флаги запуска не найдены",
+      "description": "CraftDoctor не нашёл явные параметры запуска Java рядом с сервером.",
+      "recommendation": "Хранить запуск в start.sh, user_jvm_args.txt или *.args и ревизовать -Xmx/-Xms/GC."
+    },
+    {
+      "id": "craft.world.level_dat.missing",
+      "severity": "DANGER",
+      "category": "миры",
+      "title": "В мире не найден level.dat",
+      "description": "Директория мира существует, но ключевой файл level.dat отсутствует.",
+      "recommendation": "Проверить целостность мира, путь level-name и backup."
+    },
+    {
+      "id": "craft.gate.offline_without_proxy",
+      "severity": "CRITICAL",
+      "category": "security",
+      "title": "online-mode=false без proxy",
+      "description": "Backend работает в offline-mode, но proxy-конфигурация не обнаружена.",
+      "recommendation": "Включить online-mode=true либо настроить proxy forwarding и закрыть backend от прямого доступа."
+    }
+  ]
+}

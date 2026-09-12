@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gitflic.ru/skif4er/doctortools/schemas/report.schema.json",
+  "title": "DoctorTools Report",
+  "description": "Стабильная JSON-схема отчётов DoctorTools 3.x. Поддерживает общий DoctorCore-отчёт и product-отчёты CraftDoctor/StackDoctor/DepDoctor/ConfigDoctor/DeployDoctor/APIDoctor/BotDoctor/LogDoctor.",
+  "type": "object",
+  "required": ["tool", "tool_version", "platform", "target", "summary", "findings"],
+  "properties": {
+    "tool": {"type": "string"},
+    "tool_version": {"type": "string"},
+    "platform": {"type": "string", "const": "DoctorTools"},
+    "target": {"type": "string"},
+    "target_path": {"type": "string"},
+    "profile": {"type": "string"},
+    "command": {"type": "string"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "finished_at": {"type": "string", "format": "date-time"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "status": {"$ref": "#/$defs/severity"},
+    "summary": {
+      "type": "object",
+      "required": ["critical", "danger", "warn", "info"],
+      "properties": {
+        "critical": {"type": "integer", "minimum": 0},
+        "danger": {"type": "integer", "minimum": 0},
+        "warn": {"type": "integer", "minimum": 0},
+        "info": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/finding"}
+    },
+    "artifacts": {"type": "object", "additionalProperties": {"type": "string"}},
+    "components": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "files": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "groups": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "samples": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "system": {"type": "object", "additionalProperties": true},
+    "java": {"type": "object", "additionalProperties": true},
+    "minecraft": {"type": "object", "additionalProperties": true},
+    "config": {"type": "object", "additionalProperties": true},
+    "plugins": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "plugin_audit": {"type": "object", "additionalProperties": true},
+    "logs": {"type": "object", "additionalProperties": true},
+    "performance": {"type": "object", "additionalProperties": true},
+    "proxy": {"type": "object", "additionalProperties": true},
+    "security": {"type": "object", "additionalProperties": true},
+    "craft_advanced": {"type": "object", "additionalProperties": true},
+    "production": {"type": "object", "additionalProperties": true},
+    "rules": {"type": "object", "additionalProperties": true},
+    "recommendations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "severity": {"type": "string", "enum": ["critical", "danger", "warn", "info", "ok", "unknown"]},
+    "finding": {
+      "type": "object",
+      "required": ["id", "severity", "title", "message"],
+      "properties": {
+        "id": {"type": "string"},
+        "severity": {"$ref": "#/$defs/severity"},
+        "title": {"type": "string"},
+        "message": {"type": "string"},
+        "path": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  }
+}

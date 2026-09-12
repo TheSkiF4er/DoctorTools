@@ -1,0 +1,318 @@
+{
+  "version": "1.9.0",
+  "module": "production",
+  "rules": [
+    {
+      "id": "production.backups.not_found",
+      "severity": "DANGER",
+      "category": "production-ready",
+      "title": "Стратегия бэкапов не обнаружена",
+      "description": "В проекте не найдены признаки настроенных бэкапов.",
+      "recommendation": "Настроить регулярные бэкапы миров, конфигов, плагинов и баз данных."
+    },
+    {
+      "id": "production.backups.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Бэкапы обнаружены",
+      "description": "Production Doctor нашёл backup-кандидаты.",
+      "recommendation": "Проверить расписание, ретеншн, внешнее хранилище и restore-процедуру."
+    },
+    {
+      "id": "production.backups.no_recent_backup",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Свежий бэкап не определён",
+      "description": "Backup-кандидаты есть, но свежий бэкап за последние 7 дней не найден.",
+      "recommendation": "Проверить расписание бэкапов и выполнить тестовое восстановление."
+    },
+    {
+      "id": "production.backups.disk_risk",
+      "severity": "DANGER",
+      "category": "production-ready",
+      "title": "Риск бэкапов из-за нехватки места",
+      "description": "Свободного места мало, а стратегия бэкапов не обнаружена или может сорваться.",
+      "recommendation": "Освободить место или подключить внешнее хранилище перед настройкой бэкапов."
+    },
+    {
+      "id": "production.crash_reports.present",
+      "severity": "DANGER",
+      "category": "production-ready",
+      "title": "Найдены crash reports",
+      "description": "В директории crash-reports есть отчёты о падениях.",
+      "recommendation": "Разобрать crash reports перед обновлением, публичным запуском или миграцией сервера."
+    },
+    {
+      "id": "production.crash_reports.none",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Crash reports не обнаружены",
+      "description": "Production Doctor не нашёл crash reports.",
+      "recommendation": "Сохранять crash reports в бэкапах и анализировать их перед релизами."
+    },
+    {
+      "id": "production.configs.not_found",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Конфигурационные файлы ядра не найдены",
+      "description": "Не найдены bukkit.yml, spigot.yml, paper/purpur-конфиги или аналогичные файлы.",
+      "recommendation": "Если сервер уже запускался, проверить путь сканирования. Если сервер новый — запустить ядро один раз для генерации конфигов."
+    },
+    {
+      "id": "production.configs.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Конфигурационные файлы ядра обнаружены",
+      "description": "Production Doctor нашёл конфиги ядра Minecraft.",
+      "recommendation": "Фиксировать изменения production-конфигов в changelog или Wiki."
+    },
+    {
+      "id": "production.disk.critical_free_space",
+      "severity": "DANGER",
+      "category": "production-ready",
+      "title": "Критически мало свободного места",
+      "description": "Свободного места меньше 5 ГБ.",
+      "recommendation": "Освободить место до запуска, обновления или настройки бэкапов."
+    },
+    {
+      "id": "production.disk.low_free_space",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Мало свободного места для production",
+      "description": "Свободного места меньше 20 ГБ.",
+      "recommendation": "Проверить рост миров, логов, crash reports и размер будущих бэкапов."
+    },
+    {
+      "id": "production.disk.ok",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Свободное место в норме",
+      "description": "Production Doctor зафиксировал достаточное свободное место.",
+      "recommendation": "Следить за ростом миров, логов и бэкапов после публичного запуска."
+    },
+    {
+      "id": "production.restart_policy.not_found",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Restart policy не обнаружена",
+      "description": "Service-файл или другой механизм автозапуска не найден.",
+      "recommendation": "Настроить systemd/supervisor/tmux wrapper с понятной restart policy."
+    },
+    {
+      "id": "production.restart_policy.service_found",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Service-файл обнаружен",
+      "description": "Production Doctor нашёл service-файл.",
+      "recommendation": "Проверить User, WorkingDirectory, ExecStart и Restart policy."
+    },
+    {
+      "id": "production.restart_policy.missing_restart",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "В service-файле не найдена restart policy",
+      "description": "Не найден Restart=always или Restart=on-failure.",
+      "recommendation": "Добавить осознанную restart policy и защиту от crash-loop."
+    },
+    {
+      "id": "production.restart_policy.root_user",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Сервер запускается от root",
+      "description": "Service-файл содержит User=root.",
+      "recommendation": "Запускать Minecraft-сервер от отдельного системного пользователя."
+    },
+    {
+      "id": "production.log_rotation.not_found",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Ротация логов не обнаружена",
+      "description": "Директория logs есть, но logrotate/retention рядом не найден.",
+      "recommendation": "Настроить ротацию и retention логов."
+    },
+    {
+      "id": "production.log_rotation.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Ротация логов обнаружена",
+      "description": "Найдены признаки logrotate или похожей ротации логов.",
+      "recommendation": "Проверить сжатие, retention и исключение секретов из логов."
+    },
+    {
+      "id": "production.startup_scripts.not_found",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Скрипты запуска не найдены",
+      "description": "Не найден start.sh/run.sh/start.bat/run.bat.",
+      "recommendation": "Зафиксировать команду запуска в явном скрипте или service-файле."
+    },
+    {
+      "id": "production.startup_scripts.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Скрипты запуска обнаружены",
+      "description": "Production Doctor нашёл скрипты запуска.",
+      "recommendation": "Проверить Java-путь, JVM-флаги и WorkingDirectory."
+    },
+    {
+      "id": "production.startup_scripts.not_executable",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Скрипт запуска не исполняемый",
+      "description": "Shell-скрипт запуска не имеет execute-бита.",
+      "recommendation": "Выполнить chmod +x или запускать скрипт явно через bash."
+    },
+    {
+      "id": "production.rollback.not_found",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Rollback-план не обнаружен",
+      "description": "Признаки rollback/snapshots/releases не найдены.",
+      "recommendation": "Перед обновлениями иметь бэкап, предыдущие jar/config и инструкцию восстановления."
+    },
+    {
+      "id": "production.rollback.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Rollback-кандидаты обнаружены",
+      "description": "Найдены признаки rollback/snapshot/release структуры.",
+      "recommendation": "Проверить, что rollback реально тестировался."
+    },
+    {
+      "id": "production.staging.not_found",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Staging-копия не обнаружена",
+      "description": "Staging/test/preprod-копия рядом с проектом не найдена.",
+      "recommendation": "Для крупных серверов проверять обновления на staging-копии."
+    },
+    {
+      "id": "production.staging.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Staging-копия обнаружена",
+      "description": "Найдены признаки staging/test/preprod структуры.",
+      "recommendation": "Поддерживать staging близким к production по окружению и данным."
+    },
+    {
+      "id": "production.runtime.root_not_writable",
+      "severity": "DANGER",
+      "category": "production-ready",
+      "title": "Нет записи в корневую директорию сервера",
+      "description": "Текущий пользователь не имеет признаков записи в корень сервера.",
+      "recommendation": "Проверить владельца файлов и пользователя запуска."
+    },
+    {
+      "id": "production.runtime.plugins_not_writable",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Нет записи в директорию plugins",
+      "description": "Текущий пользователь не имеет признаков записи в plugins или директория отсутствует.",
+      "recommendation": "Проверить владельца plugins и права на обновление jar/config."
+    },
+    {
+      "id": "production.backups.empty_candidate",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Backup-кандидат пустой или непроверяемый",
+      "description": "Найден backup-кандидат с нулевым размером или без проверяемого размера.",
+      "recommendation": "Проверить, что бэкап реально содержит миры, конфиги, плагины и данные."
+    },
+    {
+      "id": "production.docker.not_detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Docker/Compose не обнаружен",
+      "description": "Dockerfile/docker-compose рядом с проектом не найдены.",
+      "recommendation": "Если используется Docker, положить compose/Dockerfile в проект или описать внешний деплой."
+    },
+    {
+      "id": "production.docker.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Docker/Compose обнаружен",
+      "description": "Production Doctor нашёл Dockerfile или compose-файлы.",
+      "recommendation": "Проверить volumes, restart policy, пользователя контейнера и проброс портов."
+    },
+    {
+      "id": "production.docker.compose_without_volumes",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Compose без явных volumes",
+      "description": "В compose-файле не найдены явные persistent volumes.",
+      "recommendation": "Зафиксировать persistent volumes для worlds, plugins, configs, logs и backups."
+    },
+    {
+      "id": "production.docker.compose_without_restart",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Compose без restart policy",
+      "description": "В compose-файле не найдена restart policy.",
+      "recommendation": "Добавить restart: unless-stopped/on-failure или осознанно описать внешний supervisor."
+    },
+    {
+      "id": "production.restart_policy.working_directory_missing",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "В service-файле не найден WorkingDirectory",
+      "description": "Systemd service не содержит WorkingDirectory=.",
+      "recommendation": "Явно указать WorkingDirectory на директорию сервера."
+    },
+    {
+      "id": "production.restart_policy.execstart_missing",
+      "severity": "DANGER",
+      "category": "production-ready",
+      "title": "В service-файле не найден ExecStart",
+      "description": "Systemd service не содержит ExecStart=.",
+      "recommendation": "Проверить service-файл: без ExecStart сервис не сможет запускать сервер."
+    },
+    {
+      "id": "production.log_rotation.retention_missing",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "В logrotate не найден retention",
+      "description": "В logrotate-файле не найден явный rotate/daily/weekly/monthly.",
+      "recommendation": "Указать retention/rotation policy и compression по необходимости."
+    },
+    {
+      "id": "production.startup_commands.not_extracted",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Команды запуска не извлечены",
+      "description": "Production Doctor не извлёк явную команду запуска из скриптов/service-файлов.",
+      "recommendation": "Проверить, что запуск сервера записан воспроизводимо."
+    },
+    {
+      "id": "production.release_layout.not_found",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Release layout не обнаружен",
+      "description": "Структура current/previous/releases рядом с проектом не найдена.",
+      "recommendation": "Для крупных проектов использовать current/previous/releases или аналогичный rollback layout."
+    },
+    {
+      "id": "production.release_layout.detected",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Release layout обнаружен",
+      "description": "Найдена структура current/previous/releases.",
+      "recommendation": "Проверить, что переключение current/previous документировано."
+    },
+    {
+      "id": "production.restore.checklist_missing",
+      "severity": "WARN",
+      "category": "production-ready",
+      "title": "Restore checklist не найден",
+      "description": "Не найден RESTORE.md/restore.md или аналогичная инструкция восстановления.",
+      "recommendation": "Добавить restore checklist и проверить его на тестовой копии."
+    },
+    {
+      "id": "production.restore.checklist_found",
+      "severity": "INFO",
+      "category": "production-ready",
+      "title": "Restore checklist найден",
+      "description": "Найдена инструкция восстановления.",
+      "recommendation": "Периодически выполнять тестовое восстановление и фиксировать дату проверки."
+    }
+  ]
+}

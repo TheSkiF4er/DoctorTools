@@ -1,0 +1,13 @@
+{
+  "version": "local-example",
+  "rules": [
+    {
+      "id": "security.rcon.enabled",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "RCON включён на production-сервере",
+      "description": "Локальная политика проекта считает включённый RCON повышенным риском.",
+      "recommendation": "Ограничить RCON firewall-правилами, использовать сильный пароль или отключить RCON."
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "version": "1.9.0",
+  "module": "security",
+  "rules": [
+    {
+      "id": "security.online_mode.false_without_proxy",
+      "severity": "CRITICAL",
+      "category": "безопасность",
+      "title": "online-mode=false без proxy forwarding",
+      "description": "Сервер принимает неподтверждённые аккаунты без признаков корректного прокси-forwarding.",
+      "recommendation": "Включить online-mode=true или настроить Velocity/BungeeCord forwarding и firewall для backend-сервера."
+    },
+    {
+      "id": "security.online_mode.false_with_proxy",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "online-mode=false с признаками proxy forwarding",
+      "description": "Backend-сервер использует online-mode=false и признаки прокси-forwarding.",
+      "recommendation": "Проверить forwarding secret, firewall и запрет прямого подключения к backend."
+    },
+    {
+      "id": "security.rcon.enabled",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "RCON включён",
+      "description": "RCON открывает удалённое управление сервером.",
+      "recommendation": "Ограничить доступ firewall, использовать сильный пароль или отключить RCON."
+    },
+    {
+      "id": "security.whitelist.not_enforced",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Whitelist включён не полностью",
+      "description": "white-list=true, но enforce-whitelist=false.",
+      "recommendation": "Включить enforce-whitelist=true, если whitelist должен быть строгим."
+    },
+    {
+      "id": "security.command_blocks.enabled",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Command blocks включены",
+      "description": "Command blocks могут быть опасны на публичных или плохо изолированных серверах.",
+      "recommendation": "Отключить command blocks, если они не нужны игровому режиму."
+    },
+    {
+      "id": "security.spawn_protection.disabled",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Spawn protection отключена",
+      "description": "spawn-protection=0 может быть рискованным для публичного survival-сервера.",
+      "recommendation": "Проверить, защищён ли spawn другими средствами."
+    },
+    {
+      "id": "security.online_mode.missing",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "online-mode не найден",
+      "description": "В server.properties не найден явный параметр online-mode.",
+      "recommendation": "Проверить целостность server.properties и явно задать online-mode."
+    },
+    {
+      "id": "security.rcon.disabled",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "RCON отключён",
+      "description": "RCON не включён в server.properties.",
+      "recommendation": "Оставлять RCON выключенным, если он не нужен для автоматизации."
+    },
+    {
+      "id": "security.rcon.port_declared",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "RCON-порт указан",
+      "description": "В server.properties найден rcon.port.",
+      "recommendation": "Проверить, что порт доступен только доверенным IP."
+    },
+    {
+      "id": "security.whitelist.disabled_with_offline_mode",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "Whitelist выключен при online-mode=false",
+      "description": "Offline-mode без whitelist/firewall повышает риск несанкционированного входа.",
+      "recommendation": "Закрыть backend через firewall, proxy forwarding или whitelist."
+    },
+    {
+      "id": "security.proxy.backend_public_bind",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "Backend может быть опубликован наружу",
+      "description": "Backend-сервер с online-mode=false привязан ко всем интерфейсам.",
+      "recommendation": "Привязать backend к 127.0.0.1/внутреннему IP или закрыть порт firewall."
+    },
+    {
+      "id": "security.proxy.forwarding_secret.not_found",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Forwarding secret не найден",
+      "description": "CraftDoctor не нашёл forwarding.secret или явный секрет Velocity рядом с проектом.",
+      "recommendation": "Проверить Velocity modern forwarding и защиту backend-сервера."
+    },
+    {
+      "id": "security.query.enabled",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "Query-протокол включён",
+      "description": "Query может быть нужен мониторингам и листингам.",
+      "recommendation": "Проверить, что query.port опубликован осознанно."
+    },
+    {
+      "id": "security.prevent_proxy_connections.disabled",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "prevent-proxy-connections выключен",
+      "description": "Сервер не блокирует часть proxy-подключений на уровне Mojang checks.",
+      "recommendation": "Включать только при понимании возможных false positive."
+    },
+    {
+      "id": "security.network.server_port",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "Основной порт сервера",
+      "description": "Security Doctor зафиксировал server-port и bind.",
+      "recommendation": "Проверить firewall и публикацию только нужных портов."
+    },
+    {
+      "id": "security.filesystem.world_writable",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "World-writable права",
+      "description": "Файл или директория доступны на запись всем пользователям системы.",
+      "recommendation": "Убрать world-writable права и проверить владельца файлов."
+    },
+    {
+      "id": "security.plugins.not_detected",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "Security-плагины не определены",
+      "description": "CraftDoctor не нашёл очевидных security/permissions/rollback-плагинов по имени.",
+      "recommendation": "Для публичного сервера проверить наличие прав, защиты территорий, аудита и rollback-инструментов."
+    },
+    {
+      "id": "security.plugins.detected",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "Security-плагины определены",
+      "description": "CraftDoctor нашёл плагины, потенциально связанные с безопасностью.",
+      "recommendation": "Проверить их конфигурацию и права."
+    },
+    {
+      "id": "security.secrets.detected",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Секрет в конфигурации",
+      "description": "Security Doctor нашёл признаки токена, API key или пароля в конфигурационном файле.",
+      "recommendation": "Заменить секрет и вынести его в безопасное место."
+    },
+    {
+      "id": "security.secrets.discord_webhook",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "Discord webhook в конфигурации",
+      "description": "В конфигурационном файле найден Discord webhook.",
+      "recommendation": "Заменить webhook и убрать его из открытых файлов/истории репозитория."
+    },
+    {
+      "id": "security.forwarding_secret.world_readable",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "Forwarding secret доступен всем пользователям",
+      "description": "Файл forwarding.secret доступен на чтение всем пользователям системы.",
+      "recommendation": "Ограничить права файла, например chmod 600, и проверить владельца."
+    },
+    {
+      "id": "security.forwarding_secret.group_readable",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Forwarding secret доступен группе",
+      "description": "Файл forwarding.secret доступен группе.",
+      "recommendation": "Проверить, что группа содержит только доверенных пользователей и сервисы."
+    },
+    {
+      "id": "security.sensitive_file.world_writable",
+      "severity": "CRITICAL",
+      "category": "безопасность",
+      "title": "Чувствительный файл доступен на запись всем",
+      "description": "Чувствительный файл можно изменить любому пользователю системы.",
+      "recommendation": "Убрать world-writable права и проверить владельца файла."
+    },
+    {
+      "id": "security.sensitive_file.env_readable",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": ".env доступен на чтение всем",
+      "description": ".env может содержать токены, пароли или ключи API.",
+      "recommendation": "Ограничить права доступа к .env."
+    },
+    {
+      "id": "security.plugins.rollback_not_detected",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Rollback/audit-плагин не найден",
+      "description": "CraftDoctor не нашёл очевидный инструмент аудита действий и восстановления.",
+      "recommendation": "Для публичного сервера рассмотреть CoreProtect/Ledger/аналог или другой контролируемый механизм аудита."
+    },
+    {
+      "id": "security.plugins.admin_detected",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Обнаружены admin/staff/panel-плагины",
+      "description": "Плагины администрирования требуют строгой настройки permissions и токенов.",
+      "recommendation": "Проверить команды, web-доступ, токены и права модераторов."
+    },
+    {
+      "id": "security.plugins.debug_detected",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "Обнаружены debug/dev/test-плагины",
+      "description": "Debug/dev/test-плагины на production могут раскрывать команды, данные или внутреннее состояние сервера.",
+      "recommendation": "Отключить на production или жёстко ограничить доступ."
+    },
+    {
+      "id": "security.secrets.telegram_bot_token",
+      "severity": "DANGER",
+      "category": "безопасность",
+      "title": "Telegram bot token в конфигурации",
+      "description": "Найден токен Telegram-бота.",
+      "recommendation": "Перевыпустить токен и убрать его из открытых файлов/истории."
+    },
+    {
+      "id": "security.secrets.private_key",
+      "severity": "CRITICAL",
+      "category": "безопасность",
+      "title": "Private key в конфигурации",
+      "description": "Найден приватный ключ.",
+      "recommendation": "Считать ключ скомпрометированным, заменить и проверить историю репозитория/бэкапов."
+    },
+    {
+      "id": "security.secrets.api_key",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "API key в конфигурации",
+      "description": "Найден признак API-ключа.",
+      "recommendation": "Вынести ключ в защищённое хранилище и заменить при утечке."
+    },
+    {
+      "id": "security.secrets.bearer_token",
+      "severity": "WARN",
+      "category": "безопасность",
+      "title": "Bearer token в конфигурации",
+      "description": "Найден Bearer token.",
+      "recommendation": "Заменить токен и убрать из публичных файлов."
+    },
+    {
+      "id": "security.secrets.ignore_file_loaded",
+      "severity": "INFO",
+      "category": "безопасность",
+      "title": "Загружен allowlist секретов",
+      "description": "CraftDoctor применил .craftdoctor-secrets-ignore.",
+      "recommendation": "Периодически проверять allowlist, чтобы он не скрывал реальные утечки."
+    }
+  ]
+}

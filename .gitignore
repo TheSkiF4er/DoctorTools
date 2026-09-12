@@ -1,0 +1,32 @@
+# Локальные бинарники и сборка
+/bin/
+/dist/
+/craftdoctor
+/doctortools
+/stackdoctor
+/depdoctor
+/configdoctor
+/deploydoctor
+/apidoctor
+/botdoctor
+/logdoctor
+*.exe
+
+# Отчёты и временные артефакты диагностики
+*doctor-report.html
+*doctor-report.md
+*doctor-report.json
+craftdoctor-ci-report.json
+examples/reports/*.html
+examples/reports/*.json
+examples/reports/*.md
+CHANGED_FILES_*.txt
+DELETED_FILES_*.txt
+
+# Релизные и временные файлы
+/tmp/
+*.log
+*.zip
+*.tar.gz
+*.sha256
+.DS_Store

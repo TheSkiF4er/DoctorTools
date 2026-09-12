@@ -1,0 +1,62 @@
+{
+  "version": "1.9.0",
+  "module": "system",
+  "rules": [
+    {
+      "id": "system.cpu.low",
+      "severity": "WARN",
+      "category": "серверная машина",
+      "title": "Мало CPU-потоков",
+      "description": "Для публичного Minecraft-сервера менее 2 CPU-потоков может быть ограничением.",
+      "recommendation": "Использовать машину минимум с 2 CPU-потоками, для нагруженного сервера — больше."
+    },
+    {
+      "id": "system.memory.low",
+      "severity": "WARN",
+      "category": "серверная машина",
+      "title": "Мало оперативной памяти",
+      "description": "На машине обнаружено менее 2 ГБ RAM.",
+      "recommendation": "Увеличить RAM или уменьшить нагрузку сервера."
+    },
+    {
+      "id": "system.disk.critical_free_space",
+      "severity": "DANGER",
+      "category": "серверная машина",
+      "title": "Критически мало свободного места",
+      "description": "На диске меньше 5 ГБ свободного места.",
+      "recommendation": "Освободить место перед запуском сервера, настройкой бэкапов или обновлением."
+    },
+    {
+      "id": "system.disk.low_free_space",
+      "severity": "WARN",
+      "category": "серверная машина",
+      "title": "Мало свободного места",
+      "description": "На диске меньше 10 ГБ свободного места.",
+      "recommendation": "Проверить логи, старые бэкапы, crash reports и размер миров."
+    },
+    {
+      "id": "system.permissions.root_not_writable",
+      "severity": "DANGER",
+      "category": "файловая система",
+      "title": "Нет прав на запись в корневую директорию сервера",
+      "description": "Текущий пользователь может не иметь прав на обновление конфигов, логов или runtime-файлов.",
+      "recommendation": "Проверить владельца файлов, права директории и пользователя запуска сервера."
+    },
+    {
+      "id": "filesystem.permissions",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Проблема прав файловой системы по логам",
+      "description": "В логах найдены Permission denied / AccessDeniedException / read-only filesystem.",
+      "recommendation": "Проверить владельца файлов, chmod/chown и пользователя запуска сервера."
+    },
+    {
+      "id": "network.bind",
+      "severity": "CRITICAL",
+      "category": "логи",
+      "title": "Ошибка привязки к порту по логам",
+      "description": "Сервер не смог занять порт или адрес.",
+      "recommendation": "Проверить server-port, bind-address и процессы, которые уже используют порт."
+    }
+  ]
+}

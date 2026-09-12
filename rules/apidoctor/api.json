@@ -1,0 +1,31 @@
+{
+  "product": "APIDoctor",
+  "version": "1.0.0",
+  "profile": "api",
+  "rules": [
+    {
+      "id": "api.openapi.missing",
+      "severity": "warn",
+      "title": "OpenAPI/Swagger-схема не найдена",
+      "description": "Для backend/API проекта нужна актуальная спецификация openapi.yaml/json или swagger.yaml/json."
+    },
+    {
+      "id": "api.auth.signal.missing",
+      "severity": "warn",
+      "title": "Не найдены признаки авторизации",
+      "description": "Проверьте наличие auth middleware и защиту приватных маршрутов."
+    },
+    {
+      "id": "api.rate_limit.missing",
+      "severity": "warn",
+      "title": "Не найдены признаки rate limit",
+      "description": "Для публичного API нужен throttling/rate limit на чувствительных маршрутах."
+    },
+    {
+      "id": "api.health.missing",
+      "severity": "warn",
+      "title": "Health endpoint не найден",
+      "description": "Для production API нужен /health, /ready или аналогичный endpoint для мониторинга и деплоя."
+    }
+  ]
+}

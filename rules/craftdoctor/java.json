@@ -1,0 +1,45 @@
+{
+  "version": "1.9.0",
+  "module": "java",
+  "rules": [
+    {
+      "id": "java.not_found",
+      "severity": "WARN",
+      "category": "java",
+      "title": "Java не найдена в PATH",
+      "description": "CraftDoctor не смог выполнить java -version.",
+      "recommendation": "Установить Java 17/21 и убедиться, что команда java доступна пользователю сервера."
+    },
+    {
+      "id": "java.version.too_old",
+      "severity": "CRITICAL",
+      "category": "java",
+      "title": "Java слишком старая",
+      "description": "Обнаруженная версия Java не подходит для современных Minecraft-серверов.",
+      "recommendation": "Установить Java 21 для актуальных Paper/Purpur/Folia или Java 17 для старых поддерживаемых веток."
+    },
+    {
+      "id": "java.version.17",
+      "severity": "INFO",
+      "category": "java",
+      "title": "Обнаружена Java 17",
+      "description": "Java 17 подходит для многих версий Minecraft, но для новых веток может потребоваться Java 21.",
+      "recommendation": "Проверить требования выбранного ядра сервера."
+    },
+    {
+      "id": "java.version.modern",
+      "severity": "INFO",
+      "category": "java",
+      "title": "Обнаружена современная Java",
+      "description": "Java подходит для актуальных Minecraft-серверов."
+    },
+    {
+      "id": "java.compatibility",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Java/API несовместимость по логам",
+      "description": "В логах найдены ClassNotFoundException, NoClassDefFoundError, NoSuchMethodError или UnsupportedClassVersionError.",
+      "recommendation": "Проверить версию Java, ядро сервера, api-version и зависимости плагина."
+    }
+  ]
+}

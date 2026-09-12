@@ -1,0 +1,27 @@
+{
+  "id": "depdoctor.supply_chain",
+  "title": "Правила DepDoctor для offline-аудита зависимостей",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "dep.lock.missing",
+      "severity": "warn",
+      "description": "Проект должен содержать lock-файл для воспроизводимой сборки."
+    },
+    {
+      "id": "dep.version.dynamic",
+      "severity": "warn",
+      "description": "Wildcard/latest версии зависимостей требуют явного закрепления."
+    },
+    {
+      "id": "dep.source.external",
+      "severity": "warn",
+      "description": "Git/HTTP-зависимости требуют ручной проверки и закреплённой ревизии."
+    },
+    {
+      "id": "dep.script.suspicious",
+      "severity": "danger",
+      "description": "Install/build scripts с curl/wget/pipe-to-shell должны проверяться вручную."
+    }
+  ]
+}

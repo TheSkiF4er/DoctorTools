@@ -1,0 +1,31 @@
+{
+  "schema": "doctortools.rules.v1",
+  "tool": "StackDoctor",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "stack.readme.missing",
+      "severity": "warn",
+      "title": "Нет README.md",
+      "description": "Full-stack проекту нужен README с запуском, env-переменными, сборкой и production-режимом."
+    },
+    {
+      "id": "stack.env.real.present",
+      "severity": "danger",
+      "title": "Обнаружен реальный .env",
+      "description": "Реальный .env не должен попадать в репозиторий или релизный архив."
+    },
+    {
+      "id": "stack.node.lock.missing",
+      "severity": "danger",
+      "title": "Node.js lock-файл не найден",
+      "description": "Зафиксируйте зависимости через package-lock.json, pnpm-lock.yaml, yarn.lock или bun.lockb."
+    },
+    {
+      "id": "stack.docker.healthcheck.missing",
+      "severity": "warn",
+      "title": "В Dockerfile нет HEALTHCHECK",
+      "description": "Production-образу полезен healthcheck для контроля состояния."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "tool": "BotDoctor",
+  "profile": "bot",
+  "description": "Правила offline-аудита Telegram/VK/Discord bot-проектов.",
+  "rules": [
+    {
+      "id": "bot.env.no_example",
+      "severity": "danger",
+      "title": "Нет .env.example",
+      "recommendation": "Добавьте .env.example со всеми обязательными переменными без реальных секретов."
+    },
+    {
+      "id": "bot.secret.telegram_token",
+      "severity": "critical",
+      "title": "Похожий на Telegram Bot Token",
+      "recommendation": "Удалите токен из проекта, очистите историю Git и перевыпустите токен."
+    },
+    {
+      "id": "bot.runtime.mode_not_documented",
+      "severity": "warn",
+      "title": "Не определён режим получения событий",
+      "recommendation": "Задокументируйте webhook, polling или long poll режим."
+    },
+    {
+      "id": "bot.runtime.no_rate_limit",
+      "severity": "warn",
+      "title": "Не найден rate limit/backoff",
+      "recommendation": "Добавьте ограничение частоты запросов и обработку rate limit платформы."
+    },
+    {
+      "id": "bot.deploy.no_runtime_descriptor",
+      "severity": "warn",
+      "title": "Нет descriptor-файла запуска",
+      "recommendation": "Добавьте Dockerfile, systemd unit, Procfile или другой воспроизводимый способ запуска."
+    }
+  ]
+}

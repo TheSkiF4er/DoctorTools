@@ -1,0 +1,206 @@
+{
+  "version": "1.9.0",
+  "module": "proxy",
+  "rules": [
+    {
+      "id": "proxy.detected",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Proxy-конфигурация обнаружена",
+      "description": "CraftDoctor нашёл признаки Velocity/BungeeCord/Waterfall конфигурации.",
+      "recommendation": "Проверить forwarding, backend bind, firewall и соответствие backend online-mode выбранной proxy-схеме."
+    },
+    {
+      "id": "proxy.not_found",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Proxy-конфигурация не обнаружена",
+      "description": "Velocity/BungeeCord/Waterfall конфигурации рядом с проектом не обнаружены.",
+      "recommendation": "Для одиночного сервера это нормально. Для сети серверов сканировать корень всей network-структуры."
+    },
+    {
+      "id": "proxy.backend.offline_without_proxy",
+      "severity": "CRITICAL",
+      "category": "proxy/network",
+      "title": "Backend работает offline без proxy",
+      "description": "server.properties содержит online-mode=false, но proxy forwarding или proxy-конфигурация не обнаружены.",
+      "recommendation": "Включить online-mode=true либо корректно настроить Velocity/BungeeCord forwarding и закрыть backend от прямого доступа."
+    },
+    {
+      "id": "proxy.velocity.detected",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Velocity обнаружен",
+      "description": "Найдена конфигурация Velocity.",
+      "recommendation": "Проверить bind, forwarding mode, forwarding.secret и backend-серверы."
+    },
+    {
+      "id": "proxy.velocity.bind.missing",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Velocity bind не найден",
+      "description": "В velocity.toml не найден параметр bind.",
+      "recommendation": "Указать ожидаемый bind, например 0.0.0.0:25565 для публичного proxy."
+    },
+    {
+      "id": "proxy.velocity.bind.localhost",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Velocity привязан к localhost",
+      "description": "Velocity bind указывает на localhost.",
+      "recommendation": "Для публичного proxy использовать внешний IP/0.0.0.0 и ограничивать доступ firewall-ом."
+    },
+    {
+      "id": "proxy.velocity.forwarding.none",
+      "severity": "CRITICAL",
+      "category": "proxy/network",
+      "title": "Velocity forwarding не настроен",
+      "description": "Velocity не использует modern forwarding или режим forwarding не найден.",
+      "recommendation": "Настроить modern forwarding и синхронизировать forwarding secret с backend-серверами."
+    },
+    {
+      "id": "proxy.velocity.forwarding.legacy",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Velocity использует legacy forwarding",
+      "description": "Velocity работает в legacy/bungeeguard forwarding-режиме.",
+      "recommendation": "По возможности перейти на modern forwarding."
+    },
+    {
+      "id": "proxy.velocity.forwarding.modern",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Velocity modern forwarding включён",
+      "description": "Velocity использует modern forwarding.",
+      "recommendation": "Проверить совпадение forwarding secret с backend-конфигурацией."
+    },
+    {
+      "id": "proxy.velocity.secret.missing",
+      "severity": "CRITICAL",
+      "category": "proxy/network",
+      "title": "Velocity forwarding secret не найден",
+      "description": "Для modern forwarding не найден непустой forwarding secret file.",
+      "recommendation": "Создать forwarding.secret, ограничить права доступа и синхронизировать secret с backend-серверами."
+    },
+    {
+      "id": "proxy.velocity.servers.empty",
+      "severity": "DANGER",
+      "category": "proxy/network",
+      "title": "Velocity backend-серверы не настроены",
+      "description": "В velocity.toml не найден список backend-серверов.",
+      "recommendation": "Добавить backend-серверы в секцию [servers]."
+    },
+    {
+      "id": "proxy.velocity.servers.detected",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Velocity backend-серверы обнаружены",
+      "description": "В Velocity найдены backend-серверы.",
+      "recommendation": "Проверить их доступность, bind и firewall."
+    },
+    {
+      "id": "proxy.velocity.forced_host.unknown_server",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Forced host ссылается на неизвестный backend",
+      "description": "В forced-hosts есть ссылка на backend, которого нет в [servers].",
+      "recommendation": "Исправить forced-hosts или добавить отсутствующий backend."
+    },
+    {
+      "id": "proxy.bungee.detected",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "BungeeCord/Waterfall обнаружен",
+      "description": "Найдена конфигурация BungeeCord/Waterfall.",
+      "recommendation": "Проверить ip_forward, online_mode, backend online-mode и firewall."
+    },
+    {
+      "id": "proxy.bungee.ip_forward.disabled",
+      "severity": "CRITICAL",
+      "category": "proxy/network",
+      "title": "BungeeCord/Waterfall ip_forward выключен",
+      "description": "В BungeeCord/Waterfall не включён ip_forward или параметр не найден.",
+      "recommendation": "Включить ip_forward: true и настроить backend под Bungee/Waterfall forwarding."
+    },
+    {
+      "id": "proxy.bungee.ip_forward.enabled",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "BungeeCord/Waterfall ip_forward включён",
+      "description": "В BungeeCord/Waterfall включён ip_forward.",
+      "recommendation": "Проверить, что backend закрыт от прямого доступа."
+    },
+    {
+      "id": "proxy.bungee.online_mode.disabled",
+      "severity": "DANGER",
+      "category": "proxy/network",
+      "title": "Proxy работает с online_mode=false",
+      "description": "BungeeCord/Waterfall proxy работает в offline mode.",
+      "recommendation": "Для публичного сервера включить online_mode: true на proxy."
+    },
+    {
+      "id": "proxy.bungee.servers.empty",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Bungee backend-серверы не определены",
+      "description": "CraftDoctor не смог определить backend-серверы в BungeeCord/Waterfall config.yml.",
+      "recommendation": "Проверить секцию servers и формат YAML."
+    },
+    {
+      "id": "proxy.backend.online_mode.true",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Backend online-mode=true при proxy",
+      "description": "Backend server.properties содержит online-mode=true при наличии proxy-конфигурации.",
+      "recommendation": "Для Velocity/Bungee backend обычно используют online-mode=false, а аутентификацию выполняет proxy."
+    },
+    {
+      "id": "proxy.backend.online_mode.false",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Backend online-mode=false при proxy",
+      "description": "Backend работает с online-mode=false при наличии proxy-конфигурации.",
+      "recommendation": "Убедиться, что backend не доступен напрямую из интернета."
+    },
+    {
+      "id": "proxy.backend.bind.public_or_blank",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Backend может быть доступен напрямую",
+      "description": "Backend server-ip пустой или 0.0.0.0.",
+      "recommendation": "Ограничить backend firewall-ом или привязать к 127.0.0.1/внутреннему IP."
+    },
+    {
+      "id": "proxy.backend.bind.private",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Backend привязан к приватному адресу",
+      "description": "Backend server-ip указывает на локальный или приватный адрес.",
+      "recommendation": "Дополнительно проверить firewall и список backend-серверов в proxy-конфигурации."
+    },
+    {
+      "id": "proxy.backend.address.public",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Backend использует публичный bind",
+      "description": "Backend в proxy-конфигурации использует 0.0.0.0 или пустой адрес.",
+      "recommendation": "Для backend лучше использовать 127.0.0.1 или приватный IP."
+    },
+    {
+      "id": "proxy.backend.address.private",
+      "severity": "INFO",
+      "category": "proxy/network",
+      "title": "Backend использует локальный/приватный адрес",
+      "description": "Backend в proxy-конфигурации использует локальный или приватный адрес.",
+      "recommendation": "Проверить, что порт backend не открыт для прямого внешнего подключения."
+    },
+    {
+      "id": "proxy.backend.address.external",
+      "severity": "WARN",
+      "category": "proxy/network",
+      "title": "Backend использует внешний адрес",
+      "description": "Backend в proxy-конфигурации использует внешний адрес.",
+      "recommendation": "Ограничить доступ к backend по firewall/VPN/security group только с proxy."
+    }
+  ]
+}

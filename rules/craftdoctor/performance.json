@@ -1,0 +1,174 @@
+{
+  "version": "1.9.0",
+  "module": "performance",
+  "rules": [
+    {
+      "id": "performance.long_tick",
+      "severity": "WARN",
+      "category": "логи",
+      "title": "Перегрузка tick loop по логам",
+      "description": "Log Doctor нашёл признаки Can't keep up / server overloaded.",
+      "recommendation": "Запустить profiling через spark/timings и проверить дистанции, сущности, чанки и тяжёлые плагины."
+    },
+    {
+      "id": "performance.view_distance.high",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Высокий view-distance",
+      "description": "Большой view-distance увеличивает нагрузку на CPU, память и диск.",
+      "recommendation": "Для публичного сервера рассмотреть view-distance 6–10 в зависимости от железа и онлайна."
+    },
+    {
+      "id": "performance.simulation_distance.high",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Высокий simulation-distance",
+      "description": "Большой simulation-distance увеличивает нагрузку tick loop.",
+      "recommendation": "Для survival/RPG-сервера рассмотреть simulation-distance 4–8."
+    },
+    {
+      "id": "performance.metric.*",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Рискованный параметр производительности",
+      "description": "Performance Doctor нашёл параметр конфигурации, который может увеличивать нагрузку.",
+      "recommendation": "Проверить значение под реальный онлайн, MSPT/TPS и профиль нагрузки."
+    },
+    {
+      "id": "performance.jvm.flags.not_found",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "JVM-флаги запуска не найдены",
+      "description": "CraftDoctor не нашёл явные JVM-флаги рядом с сервером.",
+      "recommendation": "Хранить параметры запуска в start.sh, user_jvm_args.txt или *.args для ревизии."
+    },
+    {
+      "id": "performance.jvm.xmx.not_found",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Не найден параметр -Xmx",
+      "description": "Performance Doctor не обнаружил явное ограничение heap.",
+      "recommendation": "Задать -Xmx под размер сервера и оставить запас RAM для ОС и сервисов."
+    },
+    {
+      "id": "performance.jvm.xmx.too_high",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "-Xmx занимает слишком большую долю RAM",
+      "description": "Максимальный heap JVM почти полностью забирает RAM машины.",
+      "recommendation": "Оставить резерв памяти для ОС, файлового кэша, БД, прокси и вспомогательных сервисов."
+    },
+    {
+      "id": "performance.jvm.xmx.low",
+      "severity": "INFO",
+      "category": "производительность",
+      "title": "Низкий -Xmx относительно RAM машины",
+      "description": "Heap может быть мал для публичного сервера с плагинами.",
+      "recommendation": "Проверить потребление памяти и увеличить -Xmx при необходимости."
+    },
+    {
+      "id": "performance.jvm.xms_xmx.mismatch",
+      "severity": "INFO",
+      "category": "производительность",
+      "title": "-Xms и -Xmx различаются",
+      "description": "Начальный и максимальный heap отличаются.",
+      "recommendation": "Для стабильного heap-профиля часто используют одинаковые -Xms и -Xmx."
+    },
+    {
+      "id": "performance.jvm.gc.not_explicit",
+      "severity": "INFO",
+      "category": "производительность",
+      "title": "GC не выбран явно",
+      "description": "В JVM-флагах не найден явный выбор GC.",
+      "recommendation": "Для большинства Minecraft-серверов обычно используют G1GC; альтернативы тестировать отдельно."
+    },
+    {
+      "id": "performance.spawn.keep_loaded",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Spawn может быть постоянно загружен",
+      "description": "Конфиги Paper/Purpur указывают на постоянно загруженный spawn.",
+      "recommendation": "Отключить keep-spawn-loaded или уменьшить радиус, если это не нужно режиму."
+    },
+    {
+      "id": "performance.profiling.spark_not_found",
+      "severity": "INFO",
+      "category": "производительность",
+      "title": "spark не найден",
+      "description": "На сервере не найден profiler-плагин spark.",
+      "recommendation": "Для диагностики лагов установить spark и использовать profiler/tick health отчёты."
+    },
+    {
+      "id": "performance.plugins.multiple_optimizers",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Несколько performance-плагинов",
+      "description": "Найдено несколько плагинов категории производительности.",
+      "recommendation": "Проверить, не конфликтуют ли оптимизаторы и не маскируют ли реальную причину лагов."
+    },
+    {
+      "id": "performance.logs.long_tick",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Long tick предупреждения",
+      "description": "В latest.log найдены признаки перегрузки tick loop.",
+      "recommendation": "Собрать spark-профиль во время просадки и проверить чанки, сущности, БД и плагины."
+    },
+    {
+      "id": "performance.logs.errors_with_lag",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Ошибки совпадают с лагами",
+      "description": "В логах одновременно есть ошибки и long tick предупреждения.",
+      "recommendation": "Сначала устранить ERROR/Exception, затем повторно измерить MSPT/TPS."
+    },
+    {
+      "id": "performance.profile.tps_low",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Низкий TPS в импортированном профиле",
+      "description": "Performance Doctor 2.0 извлёк TPS ниже штатного уровня из spark/timings-отчёта.",
+      "recommendation": "Сопоставить профиль со временем жалоб и проверить top-hotspots, чанки, сущности, БД и scheduled tasks."
+    },
+    {
+      "id": "performance.profile.mspt_high",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Высокий MSPT в импортированном профиле",
+      "description": "Performance Doctor 2.0 извлёк MSPT выше 50 из profiler/timings-отчёта.",
+      "recommendation": "Разобрать spark/timings snapshot и снизить нагрузку tick loop до повторного изменения JVM/конфигов."
+    },
+    {
+      "id": "performance.capacity.heap_below_target",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "Heap ниже ориентира под целевой онлайн",
+      "description": "Параметр -Xmx заметно ниже расчётного ориентира для указанного --players/--target.",
+      "recommendation": "Проверить фактическое потребление RAM/GC и скорректировать heap с резервом для ОС и сервисов."
+    },
+    {
+      "id": "performance.capacity.ram_insufficient",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "RAM машины может быть недостаточно под целевой онлайн",
+      "description": "Ориентир heap под указанный онлайн занимает слишком большую долю RAM машины.",
+      "recommendation": "Снизить целевой онлайн/дистанции, добавить RAM или разделить сеть на отдельные backend-серверы."
+    },
+    {
+      "id": "performance.capacity.view_distance_above_target",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "view-distance выше ориентира capacity-профиля",
+      "description": "Текущий view-distance выше стартового ориентира для указанного типа сервера и онлайна.",
+      "recommendation": "Снизить view-distance или подтвердить значение через spark/timings под реальной нагрузкой."
+    },
+    {
+      "id": "performance.capacity.simulation_distance_above_target",
+      "severity": "WARN",
+      "category": "производительность",
+      "title": "simulation-distance выше ориентира capacity-профиля",
+      "description": "Текущий simulation-distance выше стартового ориентира для указанного типа сервера и онлайна.",
+      "recommendation": "Снизить simulation-distance или подтвердить значение через profiler/tick health."
+    }
+  ]
+}

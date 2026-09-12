@@ -1,0 +1,185 @@
+{
+  "version": "1.9.0",
+  "module": "plugins",
+  "rules": [
+    {
+      "id": "plugins.dir.not_found",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Директория plugins не найдена",
+      "description": "CraftDoctor не нашёл директорию plugins.",
+      "recommendation": "Для Vanilla это нормально; для Paper/Purpur/Folia/Spigot проверьте путь к серверу."
+    },
+    {
+      "id": "plugins.none",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Плагины не найдены",
+      "description": "В директории plugins нет jar-файлов плагинов."
+    },
+    {
+      "id": "plugins.metadata.missing.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "Метаданные плагина не найдены",
+      "description": "В jar-файле не найден plugin.yml или paper-plugin.yml.",
+      "recommendation": "Проверить, является ли файл корректным серверным плагином Minecraft."
+    },
+    {
+      "id": "plugins.duplicate.*",
+      "severity": "DANGER",
+      "category": "плагины",
+      "title": "Обнаружены дублирующиеся плагины",
+      "description": "Найдено несколько jar-файлов с одним именем плагина.",
+      "recommendation": "Оставить одну актуальную версию плагина и удалить старые/дублирующие jar."
+    },
+    {
+      "id": "plugins.dependency.missing.*",
+      "severity": "CRITICAL",
+      "category": "плагины",
+      "title": "Отсутствует обязательная зависимость плагина",
+      "description": "Плагин требует dependency, которого нет среди найденных плагинов.",
+      "recommendation": "Установить недостающую зависимость или отключить зависящий от неё плагин."
+    },
+    {
+      "id": "plugins.jar.invalid.*",
+      "severity": "DANGER",
+      "category": "плагины",
+      "title": "Повреждённый jar-файл плагина",
+      "description": "CraftDoctor не смог открыть файл плагина как jar/zip-архив.",
+      "recommendation": "Пересобрать или заново скачать плагин, затем повторить аудит."
+    },
+    {
+      "id": "plugins.dependency.cycle.*",
+      "severity": "DANGER",
+      "category": "плагины",
+      "title": "Циклическая зависимость плагинов",
+      "description": "В обязательных depend-связях найден цикл.",
+      "recommendation": "Убрать цикл из plugin.yml/paper-plugin.yml или изменить загрузочную архитектуру плагинов."
+    },
+    {
+      "id": "plugins.category.multiple.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "Несколько плагинов одной роли",
+      "description": "Найдено несколько плагинов, которые могут закрывать одну и ту же серверную роль.",
+      "recommendation": "Проверить пересечение команд, прав, обработчиков событий и конфигураций."
+    },
+    {
+      "id": "plugins.known.luckperms",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Обнаружен LuckPerms",
+      "description": "На сервере найден популярный permission-плагин LuckPerms."
+    },
+    {
+      "id": "plugins.known.vault",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Обнаружен Vault",
+      "description": "На сервере найден Vault как общий слой интеграции economy/permissions/chat."
+    },
+    {
+      "id": "plugins.known.placeholderapi",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Обнаружен PlaceholderAPI",
+      "description": "На сервере найден PlaceholderAPI."
+    },
+    {
+      "id": "plugins.known.spark",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Обнаружен spark",
+      "description": "На сервере найден spark для profiling и диагностики производительности."
+    },
+    {
+      "id": "plugins.missing_dependency",
+      "severity": "CRITICAL",
+      "category": "логи",
+      "title": "Отсутствующая зависимость плагина по логам",
+      "description": "Log Doctor нашёл признаки отсутствующей зависимости плагина.",
+      "recommendation": "Проверить depend/softdepend, установить нужный плагин или отключить зависящий компонент."
+    },
+    {
+      "id": "plugins.load_failed",
+      "severity": "CRITICAL",
+      "category": "логи",
+      "title": "Плагин не загрузился по логам",
+      "description": "В логах найдено сообщение о невозможности загрузить плагин.",
+      "recommendation": "Проверить jar-файл, plugin.yml/paper-plugin.yml, зависимости и совместимость с ядром."
+    },
+    {
+      "id": "plugins.enable_failed",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Плагин не включился по логам",
+      "description": "В логах найдено сообщение об ошибке включения плагина.",
+      "recommendation": "Изучить stack trace, конфиг плагина, версию API и зависимости."
+    },
+    {
+      "id": "plugins.api_version.missing.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "У плагина не указан api-version",
+      "description": "Плагин не содержит api-version в plugin.yml/paper-plugin.yml.",
+      "recommendation": "Проверить свежую версию плагина и совместимость с актуальным ядром Paper/Purpur/Folia."
+    },
+    {
+      "id": "plugins.api_version.old.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "У плагина устаревшая api-version",
+      "description": "Плагин указывает старую api-version.",
+      "recommendation": "Обновить плагин или проверить совместимость с текущей версией Minecraft."
+    },
+    {
+      "id": "plugins.main_class.missing.*",
+      "severity": "DANGER",
+      "category": "плагины",
+      "title": "Main class плагина не найден в jar",
+      "description": "Класс, указанный в main, отсутствует внутри jar-файла.",
+      "recommendation": "Проверить сборку плагина, package name и plugin.yml/paper-plugin.yml."
+    },
+    {
+      "id": "plugins.folia.compatibility_unknown.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "Folia-совместимость плагина не подтверждена",
+      "description": "Сервер похож на Folia, но плагин не указывает folia-supported=true.",
+      "recommendation": "Проверить документацию плагина и потокобезопасность перед запуском на Folia."
+    },
+    {
+      "id": "plugins.shaded.many_libraries.*",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Плагин содержит несколько shaded-библиотек",
+      "description": "В jar-файле обнаружено несколько вложенных библиотек.",
+      "recommendation": "При ошибках классов проверить конфликты shaded-зависимостей."
+    },
+    {
+      "id": "plugins.libraries.used.*",
+      "severity": "INFO",
+      "category": "плагины",
+      "title": "Плагин использует libraries в plugin.yml",
+      "description": "Плагин объявляет внешние libraries.",
+      "recommendation": "Убедиться, что ядро поддерживает загрузку libraries и имеет доступ к нужным артефактам."
+    },
+    {
+      "id": "plugins.classes.duplicate.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "Одинаковый класс найден в нескольких плагинах",
+      "description": "Один и тот же класс обнаружен в нескольких jar-файлах.",
+      "recommendation": "Проверить дублирование модулей, старые jar-файлы и конфликты shaded-кода."
+    },
+    {
+      "id": "plugins.conflict.*",
+      "severity": "WARN",
+      "category": "плагины",
+      "title": "Потенциальный конфликт плагинов",
+      "description": "Несколько плагинов закрывают одну критичную роль или имеют известный риск пересечения.",
+      "recommendation": "Разделить зоны ответственности плагинов или оставить один основной plugin-provider."
+    }
+  ]
+}

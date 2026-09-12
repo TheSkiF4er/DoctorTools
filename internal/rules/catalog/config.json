@@ -1,0 +1,182 @@
+{
+  "version": "1.9.0",
+  "module": "config",
+  "rules": [
+    {
+      "id": "config.server_properties.parsed",
+      "severity": "INFO",
+      "category": "конфигурация",
+      "title": "server.properties разобран",
+      "description": "Config Doctor успешно разобрал основной конфигурационный файл сервера.",
+      "recommendation": "Использовать config audit после изменений сетевых, игровых и performance-параметров."
+    },
+    {
+      "id": "config.server_properties.not_found",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "server.properties не найден",
+      "description": "Config Doctor не смог прочитать server.properties.",
+      "recommendation": "Проверить путь сканирования и наличие основного конфигурационного файла."
+    },
+    {
+      "id": "config.properties.duplicate_key.*",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Дублирующийся ключ в server.properties",
+      "description": "Один ключ определён несколько раз.",
+      "recommendation": "Оставить одно актуальное значение параметра."
+    },
+    {
+      "id": "config.properties.unknown_key.*",
+      "severity": "INFO",
+      "category": "конфигурация",
+      "title": "Неизвестный ключ server.properties",
+      "description": "Ключ отсутствует в базовом каталоге известных параметров.",
+      "recommendation": "Проверить, это параметр новой версии или опечатка."
+    },
+    {
+      "id": "config.properties.deprecated_key.*",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Устаревший ключ server.properties",
+      "description": "Параметр выглядит устаревшим для современных Minecraft-серверов.",
+      "recommendation": "Проверить актуальную документацию и удалить неиспользуемый ключ."
+    },
+    {
+      "id": "config.properties.invalid_bool.*",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Некорректное boolean-значение",
+      "description": "Параметр должен быть true или false.",
+      "recommendation": "Исправить значение на true или false."
+    },
+    {
+      "id": "config.properties.invalid_int.*",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Некорректное числовое значение",
+      "description": "Параметр должен быть целым числом.",
+      "recommendation": "Исправить значение на целое число."
+    },
+    {
+      "id": "config.properties.out_of_range.*",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Значение вне допустимого диапазона",
+      "description": "Числовой параметр выходит за технически допустимый диапазон.",
+      "recommendation": "Вернуть параметр в допустимый диапазон."
+    },
+    {
+      "id": "config.properties.out_of_recommended_range.*",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Значение вне стартового рекомендуемого диапазона",
+      "description": "Параметр может быть допустимым, но требует проверки под нагрузкой.",
+      "recommendation": "Проверить значение на staging или под реальным профилем нагрузки."
+    },
+    {
+      "id": "config.properties.query_port.missing",
+      "severity": "INFO",
+      "category": "конфигурация",
+      "title": "Query включён без явного query.port",
+      "description": "enable-query=true, но query.port не задан явно.",
+      "recommendation": "Указать query.port для предсказуемой интеграции с мониторингами."
+    },
+    {
+      "id": "config.properties.level_name.empty",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "level-name пустой",
+      "description": "Основной мир не указан, хотя директории миров обнаружены.",
+      "recommendation": "Указать корректный level-name."
+    },
+    {
+      "id": "config.yaml.empty.*",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Пустой YAML-конфиг",
+      "description": "Конфигурационный YAML-файл пустой.",
+      "recommendation": "Проверить, не был ли файл повреждён или очищен."
+    },
+    {
+      "id": "config.yaml.tabs.*",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Табуляция в YAML",
+      "description": "YAML-файл содержит табуляцию в отступе.",
+      "recommendation": "Заменить табуляции на пробелы."
+    },
+    {
+      "id": "config.yaml.duplicate_key.*",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Дублирующийся YAML-ключ",
+      "description": "В YAML-конфиге найден повторяющийся ключ.",
+      "recommendation": "Проверить вложенность и оставить одно значение."
+    },
+    {
+      "id": "config.json.invalid.*",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Некорректный JSON",
+      "description": "JSON-файл не разбирается.",
+      "recommendation": "Исправить JSON-синтаксис перед запуском сервера."
+    },
+    {
+      "id": "config.velocity.detected",
+      "severity": "INFO",
+      "category": "конфигурация",
+      "title": "Velocity-конфигурация обнаружена",
+      "description": "Найден velocity.toml.",
+      "recommendation": "Проверить bind, forwarding mode и secret."
+    },
+    {
+      "id": "config.velocity.forwarding_mode.missing",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Velocity forwarding mode не задан",
+      "description": "Не найден player-info-forwarding-mode.",
+      "recommendation": "Явно настроить forwarding mode."
+    },
+    {
+      "id": "config.velocity.forwarding_mode.invalid",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Некорректный Velocity forwarding mode",
+      "description": "Значение player-info-forwarding-mode не поддерживается.",
+      "recommendation": "Использовать none, legacy, bungeeguard или modern."
+    },
+    {
+      "id": "config.velocity.secret_file.missing",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "Velocity secret file не найден",
+      "description": "modern forwarding включён, но файл секрета отсутствует.",
+      "recommendation": "Создать forwarding secret и синхронизировать его с backend."
+    },
+    {
+      "id": "config.velocity.bind.missing",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "Velocity bind не задан",
+      "description": "В velocity.toml отсутствует bind.",
+      "recommendation": "Явно указать bind-адрес и порт proxy."
+    },
+    {
+      "id": "config.bungee.detected",
+      "severity": "INFO",
+      "category": "конфигурация",
+      "title": "BungeeCord/Waterfall-конфигурация обнаружена",
+      "description": "Найден config.yml с признаками BungeeCord/Waterfall.",
+      "recommendation": "Проверить ip_forward, online_mode и backend-настройки."
+    },
+    {
+      "id": "config.bungee.ip_forward.not_true",
+      "severity": "DANGER",
+      "category": "конфигурация",
+      "title": "BungeeCord/Waterfall ip_forward не включён",
+      "description": "В конфигурации proxy не найдено ip_forward: true.",
+      "recommendation": "Включить ip_forward и согласовать backend-настройки."
+    }
+  ]
+}

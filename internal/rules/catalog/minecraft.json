@@ -1,0 +1,60 @@
+{
+  "version": "1.9.0",
+  "module": "minecraft",
+  "rules": [
+    {
+      "id": "minecraft.core_jar.not_found",
+      "severity": "CRITICAL",
+      "category": "minecraft",
+      "title": "Серверное ядро не найдено",
+      "description": "В корне проекта не найден .jar-файл серверного ядра.",
+      "recommendation": "Указать корректную директорию сервера или поместить серверное ядро в корень проекта."
+    },
+    {
+      "id": "minecraft.core.detected",
+      "severity": "INFO",
+      "category": "minecraft",
+      "title": "Серверное ядро обнаружено",
+      "description": "CraftDoctor обнаружил jar-файл серверного ядра."
+    },
+    {
+      "id": "minecraft.server_properties.found",
+      "severity": "INFO",
+      "category": "конфигурация",
+      "title": "server.properties найден",
+      "description": "Основной конфигурационный файл сервера найден и прочитан."
+    },
+    {
+      "id": "minecraft.server_properties.not_found",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "server.properties не найден",
+      "description": "CraftDoctor не нашёл server.properties в корне проекта.",
+      "recommendation": "Проверить, что указан путь именно к директории Minecraft-сервера."
+    },
+    {
+      "id": "minecraft.eula.not_accepted",
+      "severity": "WARN",
+      "category": "конфигурация",
+      "title": "EULA не принята или eula.txt отсутствует",
+      "description": "Файл eula.txt отсутствует или не содержит eula=true.",
+      "recommendation": "Перед запуском сервера принять EULA, если вы согласны с условиями Mojang/Microsoft."
+    },
+    {
+      "id": "minecraft.worlds.not_found",
+      "severity": "INFO",
+      "category": "minecraft",
+      "title": "Миры не обнаружены",
+      "description": "CraftDoctor не нашёл директории миров в корне проекта.",
+      "recommendation": "Если сервер боевой — проверить путь сканирования."
+    },
+    {
+      "id": "world.chunk_region",
+      "severity": "DANGER",
+      "category": "логи",
+      "title": "Проблема мира/чанков по логам",
+      "description": "В логах найдены признаки ошибки chunk/region/world-файлов.",
+      "recommendation": "Сделать бэкап, проверить crash reports и повреждённые region-файлы."
+    }
+  ]
+}
